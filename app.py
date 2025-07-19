@@ -15,10 +15,10 @@ def load_course_data():
     df = pd.read_excel("Course and Sections.xlsx", sheet_name="Table 2")
     course_map = {}
     for _, row in df.iterrows():
-        abbrev = row["Abbriviation"]
-        area = row["Area"]
-        full_name = row["Course Name"]
-        sections = [s.strip() for s in row["Sections"].split(",")]
+        abbrev = row["Abbriviation"].strip().upper()
+        area = row["Area"].strip()
+        full_name = row["Course Name"].strip()
+        sections = [s.strip().upper() for s in row["Sections"].split(",")]
         for sec in sections:
             course_map[(abbrev, sec)] = {"area": area, "course_name": full_name}
     return df, course_map
@@ -33,12 +33,12 @@ for area in sorted(course_df["Area"].unique()):
     with st.sidebar.expander(f"📚 {area}"):
         area_df = course_df[course_df["Area"] == area]
         for _, row in area_df.iterrows():
-            course = row["Abbriviation"]
+            course = row["Abbriviation"].strip().upper()
             label = row["Course Name"]
-            sections = row["Sections"].split(",")
+            sections = [s.strip().upper() for s in row["Sections"].split(",")]
             selected = st.multiselect(f"{label} ({course})", sections, key=f"{course}_{area}")
             for sec in selected:
-                user_selection.append((course, sec.strip()))
+                user_selection.append((course, sec))
 
 # UI: PDF Upload
 st.sidebar.header("Step 2: Upload Weekly Timetable PDF")
@@ -85,10 +85,10 @@ def parse_pdf_to_schedule(pdf_bytes):
                     "day": current_day,
                     "date": current_date,
                     "time": time_slot,
-                    "course_abbr": m[0],
-                    "section": m[1],
-                    "faculty": m[2],
-                    "venue": m[3]
+                    "course_abbr": m[0].strip().upper(),
+                    "section": m[1].strip().upper(),
+                    "faculty": m[2].strip(),
+                    "venue": m[3].strip()
                 })
             row_idx += 1
 
@@ -99,7 +99,7 @@ def parse_pdf_to_schedule(pdf_bytes):
 def filter_schedule(sessions, selected, info_map):
     final = []
     for s in sessions:
-        key = (s["course_abbr"], s["section"])
+        key = (s["course_abbr"].upper(), s["section"].upper())
         if key in selected:
             final.append({
                 "Day": s["day"],
@@ -114,6 +114,7 @@ def filter_schedule(sessions, selected, info_map):
 # Show results
 if pdf_file and user_selection:
     raw_schedule = parse_pdf_to_schedule(pdf_file.read())
+    # TEMP DEBUG (optional): st.write(raw_schedule, user_selection)
     personal_schedule = filter_schedule(raw_schedule, user_selection, course_info)
 
     if personal_schedule:
