@@ -1,0 +1,33 @@
+Area,Course Name,Abbriviation,Sections
+CORE,Cross Functional Simulation,CFS,"A,B,C,D,E,F,G,H"
+CORE,Emerging Technologies,ET,"A,B,C,D,E,F,G,H"
+CORE,Sectoral Analysis,SA,"A,B,C,D,E,F,G,H"
+CORE,Enterpreneurship & New Venture,ENV,Exc
+CORE,Strategic Management,SM,Exc
+CORE,Business Research Methods,BRM,Exc
+MKT,Digital Marketing,DIGM,"A,B,C"
+MKT,Marketing Research,MR,A
+MKT,"Marketing of Services &
+Experience Management",MSE,"A,B,C"
+MKT,Strategic Marketing with Markstrat,SMMT,"A,B,C,D,E"
+MKT,B2B Marketing,B2BM,"A,B"
+MKT,"Electronic Commerce
+Management",ECM,A
+MKT,Brand Communication,BCM,A
+FIN,Derivatives Mnagement,DM,A
+FIN,"Security Analysis and Portfolio
+Management",SAPM,A
+FIN,Financial Risk Management,FRM,A
+FIN,Management of Financial,MFS,A
+FIN,Investment Banking,CRA,A
+FIN,Wealth Management,WM,A
+HRM,"Career Management &
+Succession Planning",CMSP,A
+HRM,"Competency Mapping &
+Assessment Centre",CMAC,A
+HRM,"Employee Relations and Labor
+Laws",ERLL,A
+OPR,"Logistics & Distribution
+Management",LDM,A
+OPR,Operations Strategy,OS,A
+OPR,Supply Chain Modelling,SCMO,A
