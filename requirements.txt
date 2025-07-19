@@ -2,3 +2,8 @@ streamlit
 pandas
 openpyxl
 PyMuPDF
+fitz 
+re
+io
+collections 
+defaultdict
